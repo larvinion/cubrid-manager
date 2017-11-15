@@ -33,6 +33,7 @@ import java.util.Locale;
 
 import com.cubrid.common.ui.cubrid.table.dialog.imp.ImportConfig;
 import com.cubrid.common.ui.cubrid.table.importhandler.handler.CSVImportFileHandler;
+import com.cubrid.common.ui.cubrid.table.importhandler.handler.SQLImportFileHandler;
 import com.cubrid.common.ui.cubrid.table.importhandler.handler.TxtImportFileHandler;
 import com.cubrid.common.ui.cubrid.table.importhandler.handler.XLSImportFileHandler;
 import com.cubrid.common.ui.cubrid.table.importhandler.handler.XLSXImportFileHandler;
@@ -98,7 +99,9 @@ public final class ImportFileHandlerFactory {
 			return new XLSImportFileHandler(fileName, fileCharset);
 		} else if (lowerCase.endsWith(".csv")) {
 			return new CSVImportFileHandler(fileName, fileCharset);
-		}
+		} else if (lowerCase.endsWith(".sql")) {
+			return new SQLImportFileHandler(fileName, fileCharset);
+		} 
 		
 		throw new RuntimeException("Not supported file type.");
 
