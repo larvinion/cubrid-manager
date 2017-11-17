@@ -99,8 +99,8 @@ public final class ImportFileHandlerFactory {
 			return new XLSImportFileHandler(fileName, fileCharset);
 		} else if (lowerCase.endsWith(".csv")) {
 			return new CSVImportFileHandler(fileName, fileCharset);
-		} else if (lowerCase.endsWith(".sql")) {
-			return new SQLImportFileHandler(fileName, fileCharset);
+		} else if (lowerCase.endsWith(".txt")) {
+			return new TxtImportFileHandler(fileName, fileCharset, "???");
 		} 
 		
 		throw new RuntimeException("Not supported file type.");
