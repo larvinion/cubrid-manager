@@ -62,6 +62,12 @@ public class TxtImportFileHandler implements
 	private final String fileCharset;
 	private final String separator;
 	private String rowSeparator = null;
+	
+	public TxtImportFileHandler(String fileName, String fileCharset) {
+		this.fileName = fileName;
+		this.fileCharset = fileCharset;
+		this.separator = null;
+	}
 
 	public TxtImportFileHandler(String fileName, String fileCharset,
 			String separator,String rowSeparator) {
@@ -107,14 +113,16 @@ public class TxtImportFileHandler implements
 								new FileInputStream(fileName), fileCharset),
 								separator, rowSeparator);
 					}
-
-					String[] txtRow = txtReader.readNextRow();
-					if (txtRow != null) {
-						totalRowCount++;
-						for (String title : txtRow) {
-							colsList.add(title);
+					
+					for(String[] string : txtReader.readAll()) {
+						if (string != null) {
+							totalRowCount++;
+							for (String title : string) {
+								colsList.add(title);
+							}
 						}
 					}
+					
 					while (!monitor.isCanceled()
 							&& txtReader.readNextRow() != null) {
 						totalRowCount++;

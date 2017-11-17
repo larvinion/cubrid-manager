@@ -482,6 +482,10 @@ public class ImportDataFromFileDialog extends
 			itemsNumberOfSheets = ifd.getItemsNumberOfSheets();
 			firstRowColsList.clear();
 			firstRowColsList.addAll(ifd.getFirstRowCols());
+			if(!firstRowColsList.isEmpty()) {
+				for(String string : firstRowColsList)
+					sqlTxt.setText(sqlTxt.getText() + string);
+			}
 			totalLinesText.setText(String.valueOf(ifd.getTotalCount()));
 			if (firstRowAsColumnBtn.getSelection()) {
 				handleSelectEventForFirstRowAsColBtn();

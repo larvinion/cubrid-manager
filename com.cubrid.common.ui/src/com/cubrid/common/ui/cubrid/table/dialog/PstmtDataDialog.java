@@ -455,6 +455,7 @@ public abstract class PstmtDataDialog extends CMTitleAreaDialog {
 		if (sql.trim().length() == 0) {
 			return false;
 		}
+		
 		if (sql.indexOf("?") == -1) {
 			return false;
 		}
