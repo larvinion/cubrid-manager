@@ -145,50 +145,15 @@ public class CubridHostNavigatorView extends CubridNavigatorView {
 	 * @param menuManager IMenuManager
 	 */
 	protected void buildPopupMenu(final IMenuManager menuManager) {
-		IStructuredSelection selection = (IStructuredSelection) tv.getSelection();
-		if (selection == null || selection.isEmpty()) {
-			ActionManager.addActionToManager(menuManager, AddHostAction.ID);
-			menuManager.add(new Separator());
-//			ActionManager.addActionToManager(menuManager, OpenSchemaEditorAction.ID);
-//			menuManager.add(new Separator());
-			return;
-		}
-
-		ICubridNode node = null;
-		Object obj = selection.getFirstElement();
-		if (obj instanceof ICubridNode) {
-			node = (ICubridNode) obj;
-		} else {
-			ActionManager.addActionToManager(menuManager, AddHostAction.ID);
-			return;
-		}
-
-		String type = node.getType();
-		if (CubridNodeType.SERVER.equals(type)) {
-			if (ConnectHostAction.isSupportedNode(obj)) {
-				ActionManager.addActionToManager(menuManager, ConnectHostAction.ID);
-			}
-			if (DisConnectHostAction.isSupportedNode(obj)) {
-				ActionManager.addActionToManager(menuManager, DisConnectHostAction.ID);
-			}
-			menuManager.add(new Separator());
-			ActionManager.addActionToManager(menuManager, AddHostAction.ID);
-			ActionManager.addActionToManager(menuManager, EditHostAction.ID);
-			ActionManager.addActionToManager(menuManager, DeleteHostAction.ID);
-			menuManager.add(new Separator());
-//			ActionManager.addActionToManager(menuManager, OpenSchemaEditorAction.ID);
-//			menuManager.add(new Separator());
-			ActionManager.addActionToManager(menuManager, ConnectionUrlExportAction.ID);
-			menuManager.add(new Separator());
-			ActionManager.addActionToManager(menuManager, ChangeManagerPasswordAction.ID);
-			menuManager.add(new Separator());
-		}
-
+//		IStructuredSelection selection = (IStructuredSelection) tv.getSelection();
+//		ICubridNode node = null;
+//		Object obj = selection.getFirstElement();
+		
 		ActionManager.getInstance().setActionsMenu(menuManager);
-		if (CubridNodeTypeManager.isCanRefresh(node.getType())) {
-			menuManager.add(new Separator());
-			ActionManager.addActionToManager(menuManager, RefreshAction.ID);
-		}
+//		if (CubridNodeTypeManager.isCanRefresh(node.getType())) {
+//			menuManager.add(new Separator());
+//			ActionManager.addActionToManager(menuManager, RefreshAction.ID);
+//		}
 	}
 
 	/**

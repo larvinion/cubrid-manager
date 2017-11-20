@@ -67,6 +67,7 @@ import com.cubrid.cubridmanager.ui.broker.action.StartBrokerEnvAction;
 import com.cubrid.cubridmanager.ui.broker.action.StopBrokerAction;
 import com.cubrid.cubridmanager.ui.broker.action.StopBrokerEnvAction;
 import com.cubrid.cubridmanager.ui.common.action.PropertyAction;
+import com.cubrid.cubridmanager.ui.common.action.RefreshAction;
 import com.cubrid.cubridmanager.ui.common.control.CMDatabaseNavigatorMenu;
 import com.cubrid.cubridmanager.ui.cubrid.database.action.BackupDatabaseAction;
 import com.cubrid.cubridmanager.ui.cubrid.database.action.CheckDatabaseAction;
@@ -104,11 +105,15 @@ import com.cubrid.cubridmanager.ui.cubrid.jobauto.action.EditBackupPlanAction;
 import com.cubrid.cubridmanager.ui.cubrid.jobauto.action.EditQueryPlanAction;
 import com.cubrid.cubridmanager.ui.cubrid.jobauto.action.QueryLogAction;
 import com.cubrid.cubridmanager.ui.host.action.AddHostAction;
+import com.cubrid.cubridmanager.ui.host.action.ChangeManagerPasswordAction;
 import com.cubrid.cubridmanager.ui.host.action.ConnectHostAction;
+import com.cubrid.cubridmanager.ui.host.action.DeleteHostAction;
+import com.cubrid.cubridmanager.ui.host.action.DisConnectHostAction;
 import com.cubrid.cubridmanager.ui.host.action.EditBrokerConfigAction;
 import com.cubrid.cubridmanager.ui.host.action.EditCmConfigAction;
 import com.cubrid.cubridmanager.ui.host.action.EditCubridConfigAction;
 import com.cubrid.cubridmanager.ui.host.action.EditHAConfigAction;
+import com.cubrid.cubridmanager.ui.host.action.EditHostAction;
 import com.cubrid.cubridmanager.ui.host.action.ExportBrokerConfigAction;
 import com.cubrid.cubridmanager.ui.host.action.ExportCmConfigAction;
 import com.cubrid.cubridmanager.ui.host.action.ExportCubridConfigAction;
@@ -170,6 +175,7 @@ import com.cubrid.cubridmanager.ui.shard.action.StopShardAction;
 import com.cubrid.cubridmanager.ui.shard.action.StopShardEnvAction;
 import com.cubrid.cubridmanager.ui.spi.Messages;
 import com.cubrid.cubridmanager.ui.spi.model.CubridNodeType;
+import com.cubrid.cubridmanager.ui.spi.model.CubridNodeTypeManager;
 
 /**
  * This menu provider provide the context menu and menu bar menu according to
@@ -191,12 +197,35 @@ public class CubridMenuProvider extends MenuProvider {
 	public void buildMenu(IMenuManager manager, ICubridNode node) {
 		// fill Action Menu according to node type
 		if (node == null) {
-			LOGGER.error("ICubridNode is a null.");
+			ActionManager.addActionToManager(manager, AddHostAction.ID);
+			manager.add(new Separator());
 			return;
 		}
 
+		if (!(node instanceof ICubridNode)) {
+			ActionManager.addActionToManager(manager, AddHostAction.ID);
+			return;
+		}
+		
 		String type = node.getType();
 		if (CubridNodeType.SERVER.equals(type)) {
+			if (ConnectHostAction.isSupportedNode(node)) {
+				addActionToManager(manager, getAction(ConnectHostAction.ID));
+			}
+			if (DisConnectHostAction.isSupportedNode(node)) {
+				addActionToManager(manager, getAction(DisConnectHostAction.ID));
+			}
+			manager.add(new Separator());
+			addActionToManager(manager, getAction(AddHostAction.ID));
+			addActionToManager(manager, getAction(EditHostAction.ID));
+			addActionToManager(manager, getAction(DeleteHostAction.ID));
+			manager.add(new Separator());
+			addActionToManager(manager, getAction(OpenSchemaEditorAction.ID));
+			manager.add(new Separator());
+			addActionToManager(manager, getAction(ConnectionUrlExportAction.ID));
+			manager.add(new Separator());
+			addActionToManager(manager, getAction(ChangeManagerPasswordAction.ID));
+			manager.add(new Separator());
 			addActionToManager(manager, getAction(HostDashboardAction.ID));
 			addActionToManager(manager, getAction(ViewServerVersionAction.ID));
 
@@ -472,6 +501,12 @@ public class CubridMenuProvider extends MenuProvider {
 					ActionManager.getInstance().getAction(
 							ShowHiddenElementsAction.ID));
 		}
+		
+		if (CubridNodeTypeManager.isCanRefresh(node.getType())) {
+			manager.add(new Separator());
+			ActionManager.addActionToManager(manager, RefreshAction.ID);
+		}
+		
 		manager.update(true);
 	}
 

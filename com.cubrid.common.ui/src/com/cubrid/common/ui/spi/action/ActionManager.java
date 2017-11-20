@@ -208,13 +208,13 @@ public final class ActionManager implements
 	 * @param manager the IMenuManager object
 	 */
 	public void setActionsMenu(IMenuManager manager) {
-		if (this.selectionProvider == null) {
-			return;
-		}
+//		if (this.selectionProvider == null) {
+//			return;
+//		}
 		IStructuredSelection selection = (IStructuredSelection) selectionProvider.getSelection();
-		if (selection == null || selection.isEmpty()) {
-			return;
-		}
+//		if (selection == null || selection.isEmpty()) {
+//			return;
+//		}
 		ICubridNode node = null;
 		Object obj = selection.getFirstElement();
 		if (obj instanceof ICubridNode) {
