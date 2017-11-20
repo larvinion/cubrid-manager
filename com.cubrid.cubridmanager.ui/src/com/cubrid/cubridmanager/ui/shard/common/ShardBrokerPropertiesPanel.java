@@ -84,7 +84,7 @@ public class ShardBrokerPropertiesPanel extends AbstractModulePanel<Shard> {
 
 	public void build(Composite parent) {
 		Group generalGroup = new Group(parent, SWT.NONE);
-		generalGroup.setText(Messages.shardBrokerInfomation);
+		generalGroup.setText(Messages.shardBrokerInformation);
 		GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
 		generalGroup.setLayoutData(gridData);
 		GridLayout layout = new GridLayout();

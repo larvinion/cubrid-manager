@@ -145,7 +145,7 @@ public class DeleteDatabaseDialog extends
 	private void createDirectoryList(Composite composite) {
 
 		final CLabel volumeInformationOfLabel = new CLabel(composite, SWT.NONE);
-		volumeInformationOfLabel.setText(Messages.lblVolumeInfomation);
+		volumeInformationOfLabel.setText(Messages.lblVolumeInformation);
 
 		final String[] columnNameArr = new String[]{
 				Messages.tblColDelDbVolName, Messages.tblColDelDbVolPath,

@@ -103,7 +103,7 @@ public class Messages extends
 	public static String msgSelectDB;
 	public static String msgQuestionSureDelete;
 	public static String titleLogout;
-	public static String msgLogoutInfomation;
+	public static String msgLogoutInformation;
 	public static String msgDeleteUserSuccess;
 	
 	public static String errInput;

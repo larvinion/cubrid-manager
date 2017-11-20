@@ -109,7 +109,7 @@ public class Messages extends
 	public static String btnPasswordChange;
 	public static String btnAddGroup;
 	public static String btnRemoveGroup;
-	public static String msgLogoutInfomation;
+	public static String msgLogoutInformation;
 	public static String titleLogout;
 	public static String errInputPassword;
 	public static String errInvalidPassword;

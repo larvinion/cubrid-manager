@@ -204,7 +204,7 @@ public class EditUserAction extends
 				if (treeViewer != null) {
 					DbUserInfo userInfo = database.getDatabaseInfo().getAuthLoginedDbUserInfo();
 					if (userInfo != null && userInfo.getName().equalsIgnoreCase(node.getName())) {
-						CommonUITool.openInformationBox(Messages.titleLogout, Messages.msgLogoutInfomation);
+						CommonUITool.openInformationBox(Messages.titleLogout, Messages.msgLogoutInformation);
 						database.setLogined(false);
 						database.setAutoSavePassword(false);
 						CubridNodeChangedEvent event = new CubridNodeChangedEvent(

@@ -121,7 +121,7 @@ public class Messages extends NLS {
 	public static String addShardWizard;
 	public static String shardGeneralInformation;
 	public static String shardName;
-	public static String shardBrokerInfomation;
+	public static String shardBrokerInformation;
 	public static String shardConnnectionFileName;
 	public static String addConnection;
 	public static String deleteConnection;

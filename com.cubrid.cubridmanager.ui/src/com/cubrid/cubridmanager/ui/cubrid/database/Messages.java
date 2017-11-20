@@ -400,7 +400,7 @@ public class Messages extends
 	public static String tblColDelDbVolSize;
 	public static String btnDeldbPath;
 	public static String msgDeleteDbConfirm;
-	public static String lblVolumeInfomation;
+	public static String lblVolumeInformation;
 	// param dump
 	public static String titleParamDumpDialog;
 	public static String msgParamDumpDialog;
