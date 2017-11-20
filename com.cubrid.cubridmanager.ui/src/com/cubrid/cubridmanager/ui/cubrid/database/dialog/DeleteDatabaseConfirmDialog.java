@@ -83,7 +83,7 @@ public class DeleteDatabaseConfirmDialog extends
 		glSourceDBComposite.marginWidth = convertHorizontalDLUsToPixels(IDialogConstants.HORIZONTAL_MARGIN);
 		glSourceDBComposite.verticalSpacing = convertVerticalDLUsToPixels(IDialogConstants.VERTICAL_SPACING);
 		glSourceDBComposite.horizontalSpacing = convertHorizontalDLUsToPixels(IDialogConstants.HORIZONTAL_SPACING);
-		glSourceDBComposite.numColumns = 2;
+		glSourceDBComposite.numColumns = 1;
 		composite.setLayout(glSourceDBComposite);
 		composite.setLayoutData(new GridData(GridData.FILL_BOTH));
 
@@ -107,8 +107,9 @@ public class DeleteDatabaseConfirmDialog extends
 		clabel1.setLayoutData(gdClabel1);
 		clabel1.setText(Messages.msgInputDbaPassword);
 		text = new Text(composite, SWT.BORDER | SWT.PASSWORD);
-		text.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-
+		GridData passwordData = new GridData(SWT.BEGINNING, SWT.CENTER, false, false);
+		passwordData.widthHint = 300;
+		text.setLayoutData(passwordData);
 	}
 
 	/**
@@ -116,7 +117,7 @@ public class DeleteDatabaseConfirmDialog extends
 	 */
 	protected void constrainShellSize() {
 		super.constrainShellSize();
-		getShell().setSize(300, 220);
+		getShell().setSize(500, 300);
 		CommonUITool.centerShell(getShell());
 		getShell().setText(Messages.titleDeleteDbConfirmDialog);
 
